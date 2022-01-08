@@ -10,12 +10,12 @@
     [x] express, body-parser, nodemon
     [x] package.json
     [x] database.sql
-[ ] index.html
-    [ ] Source in scripts and style
-    [ ] Initial mockup
-[ ] Databse setup
-    [ ] database.sql
-    [ ] postgresql setup
+[x] index.html
+    [x] Source in scripts and style
+    [x] Initial mockup
+[x] Databse setup
+    [x] database.sql
+    [x] postgresql setup
 [ ] Router set up
     [ ] Pool
     [ ] GET
