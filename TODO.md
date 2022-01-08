@@ -19,13 +19,13 @@
 [ ] Router set up
     [x] Pool
     [x] GET
-    [ ] POST
+    [x] POST
     [ ] PUT
     [ ] DELETE
 [x] Server.js
 [ ] Client.js
     [x] Event handlers
-    [ ] Add function
+    [x] Add function
     [ ] Complete function
     [ ] Delete function
     [x] Refresh/GET function

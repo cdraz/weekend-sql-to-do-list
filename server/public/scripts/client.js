@@ -96,3 +96,39 @@ function addTask(event) {
         alert('Unable to connect to server. Please try again.');
     });
 } // end addTask
+
+// Declare deleteTask
+function deleteTask() {
+    // pull task ID using jQuery .data()
+    let taskId = $(this).parents('tr').data('id');
+    console.log('in deleteTask, task to delete: ', taskId );
+
+    // Sweet alert failsafe
+    // When delete button clicked it will pop out a window
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "This action cannot be undone.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#991111',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it forever.'
+    })
+        .then( result => {
+            // If result is confirmed ....
+            if (result.isConfirmed) {
+                // AJAX DELETE request
+                $.ajax({
+                    method: 'DELETE',
+                    url: `/tasks/${taskId}`,
+                })
+                .then( res => {
+                    console.log(`successfully deleted task ${taskId}`, res);
+                    getTasks();
+                })
+                .catch( err => {
+                    console.log('Delete failed', err );
+                })
+            }
+        })
+    }
