@@ -21,13 +21,13 @@
     [x] GET
     [x] POST
     [ ] PUT
-    [ ] DELETE
+    [x] DELETE
 [x] Server.js
 [ ] Client.js
     [x] Event handlers
     [x] Add function
     [ ] Complete function
-    [ ] Delete function
+    [x] Delete function
     [x] Refresh/GET function
     [x] Render function
 [ ] Styling

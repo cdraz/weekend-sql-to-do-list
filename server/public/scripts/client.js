@@ -10,7 +10,7 @@ function onReady() {
 function loadEventHandlers() {
     console.log('loading event handlers');
     $(document).on('submit', '#taskForm', addTask);
-    // $(document).on('click', '.deleteBtn', deleteTask);
+    $(document).on('click', '.deleteBtn', deleteTask);
     // $(document).on('change', '.completeCheckbox', markComplete);
 }
 
@@ -104,14 +104,14 @@ function deleteTask() {
     console.log('in deleteTask, task to delete: ', taskId );
 
     // Sweet alert failsafe
-    // When delete button clicked it will pop out a window
+    // Window popup when delete button is clicked
     Swal.fire({
-        title: 'Are you sure?',
+        title: 'Are you sure you want to delete this task?',
         text: "This action cannot be undone.",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#991111',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#FF1111',
+        cancelButtonColor: '#BBBBBB',
         confirmButtonText: 'Yes, delete it forever.'
     })
         .then( result => {
