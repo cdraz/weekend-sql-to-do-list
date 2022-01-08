@@ -22,7 +22,19 @@ pool.on('error', err => {
 });
 
 // GET
+taskRouter.get('/', (req, res) => {
+    console.log('in GET /tasks');
 
+    let queryText = 'SELECT * FROM "tasks" ORDER BY "id" DESC';
+    
+    pool.query(queryText).then( result => {
+        res.send(result.rows);
+    })
+        .catch( err => {
+            console.log('error getting tasks', err);
+            res.sendStatus(500);
+        });
+}); // end GET endpoint
 
 // POST
 
