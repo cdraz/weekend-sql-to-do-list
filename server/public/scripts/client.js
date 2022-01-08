@@ -10,7 +10,7 @@ function onReady() {
 function loadEventHandlers() {
     console.log('loading event handlers');
     $(document).on('submit', '#taskForm', addTask);
-    // $(document).on('click', '.deleteBtn', deleteTask);
+    $(document).on('click', '.deleteBtn', deleteTask);
     // $(document).on('change', '.completeCheckbox', markComplete);
 }
 
@@ -96,3 +96,39 @@ function addTask(event) {
         alert('Unable to connect to server. Please try again.');
     });
 } // end addTask
+
+// Declare deleteTask
+function deleteTask() {
+    // pull task ID using jQuery .data()
+    let taskId = $(this).parents('tr').data('id');
+    console.log('in deleteTask, task to delete: ', taskId );
+
+    // Sweet alert failsafe
+    // Window popup when delete button is clicked
+    Swal.fire({
+        title: 'Are you sure you want to delete this task?',
+        text: "This action cannot be undone.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#FF1111',
+        cancelButtonColor: '#BBBBBB',
+        confirmButtonText: 'Yes, delete it forever.'
+    })
+        .then( result => {
+            // If result is confirmed ....
+            if (result.isConfirmed) {
+                // AJAX DELETE request
+                $.ajax({
+                    method: 'DELETE',
+                    url: `/tasks/${taskId}`,
+                })
+                .then( res => {
+                    console.log(`successfully deleted task ${taskId}`, res);
+                    getTasks();
+                })
+                .catch( err => {
+                    console.log('Delete failed', err );
+                })
+            }
+        })
+    }

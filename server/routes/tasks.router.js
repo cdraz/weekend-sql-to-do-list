@@ -27,6 +27,7 @@ taskRouter.get('/', (req, res) => {
 
     let queryText = 'SELECT * FROM "tasks" ORDER BY "id" DESC';
     
+    // Pool query
     pool.query(queryText).then( result => {
         res.send(result.rows);
     })
@@ -53,6 +54,7 @@ taskRouter.post('/', (req, res) => {
         newTask.complete
     ];
 
+    // Pool query
     pool.query(queryText, queryParams)
         .then( () => {
             res.sendStatus(201);
@@ -67,4 +69,28 @@ taskRouter.post('/', (req, res) => {
 
 
 // DELETE
+taskRouter.delete('/:id', (req, res) => {
+    console.log('in DELETE /tasks', req.params.id);
+
+    // Create SQL delete query
+    let queryText = `
+        DELETE FROM "tasks"
+        WHERE id = $1;
+    `;
+
+    let queryParams = [
+        req.params.id
+    ];
+
+    // Pool query
+    pool.query(queryText, queryParams)
+        .then( () => {
+            res.sendStatus(200);
+        })
+        .catch( err => {
+            console.log('failed to delete', err);
+            res.sendStatus(500);
+        });
+});
+
 module.exports = taskRouter;
