@@ -17,19 +17,19 @@
     [x] database.sql
     [x] postgresql setup
 [ ] Router set up
-    [ ] Pool
-    [ ] GET
+    [x] Pool
+    [x] GET
     [ ] POST
     [ ] PUT
     [ ] DELETE
-[ ] Server.js
+[x] Server.js
 [ ] Client.js
-    [ ] Event handlers
+    [x] Event handlers
     [ ] Add function
     [ ] Complete function
     [ ] Delete function
-    [ ] Refresh/GET function
-    [ ] Render function
+    [x] Refresh/GET function
+    [x] Render function
 [ ] Styling
 
 **STRETCH**

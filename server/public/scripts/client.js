@@ -9,7 +9,7 @@ function onReady() {
 // Declare loadEventHandlers
 function loadEventHandlers() {
     console.log('loading event handlers');
-    // $(document).on('submit', '#taskForm', submitTask);
+    $(document).on('submit', '#taskForm', addTask);
     // $(document).on('click', '.deleteBtn', deleteTask);
     // $(document).on('change', '.completeCheckbox', markComplete);
 }
@@ -63,3 +63,36 @@ function checkCompleted(task) {
         return '<input type="checkbox" class="completeCheckbox">'
     }
 } // end checkCompleted
+
+// Declare addTask
+function addTask(event) {
+    event.preventDefault();
+    console.log('in addTask');
+
+    // Pull inputs to create new object
+    let newTask = {
+        description: $('#taskInput').val(),
+        complete: false,
+        time_completed: null
+    };
+
+    // POST request
+    $.ajax({
+        method: 'POST',
+        url: '/tasks',
+        data: newTask
+    })
+    .then( res => {
+        console.log('in POST /tasks', res);
+
+        // Empty input
+        $('#taskInput').val('');
+
+        // getTasks
+        getTasks();
+    })
+    .catch( err => {
+        console.log('POST /tasks failed', err);
+        alert('Unable to connect to server. Please try again.');
+    });
+} // end addTask
