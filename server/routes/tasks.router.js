@@ -37,12 +37,34 @@ taskRouter.get('/', (req, res) => {
 }); // end GET endpoint
 
 // POST
+taskRouter.post('/', (req, res) => {
+    let newTask = req.body;
+    console.log('Adding task', newTask);
 
+    // Write SQL query
+    let queryText =`
+        INSERT INTO "tasks"
+            ("description", "complete")
+        VALUES ($1, $2);
+    `;
+
+    let queryParams = [
+        newTask.description,
+        newTask.complete
+    ];
+
+    pool.query(queryText, queryParams)
+        .then( () => {
+            res.sendStatus(201);
+        })
+        .catch( err => {
+            console.log('Error adding new task', err );
+            res.sendStatus(500);
+        });
+});
 
 // PUT
 
 
 // DELETE
-
-
 module.exports = taskRouter;
