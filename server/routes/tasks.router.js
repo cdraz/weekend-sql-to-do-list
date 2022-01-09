@@ -68,7 +68,7 @@ taskRouter.post('/', (req, res) => {
 // PUT
 taskRouter.put('/:id', (req, res) => {
     console.log(`in PUT /tasks/${req.params.id}`);
-    
+
     // Create SQL update query
     let queryText = `
         UPDATE "tasks"
@@ -85,7 +85,7 @@ taskRouter.put('/:id', (req, res) => {
 
     pool.query(queryText, queryParams)
         .then( dbRes => {
-            console.log(`PUT /tasks/${req.body.id} successful`);
+            console.log(`PUT /tasks/${req.params.id} successful`);
             res.sendStatus(201)
         })
         .catch( err => {

@@ -11,7 +11,7 @@ function loadEventHandlers() {
     console.log('loading event handlers');
     $(document).on('submit', '#taskForm', addTask);
     $(document).on('click', '.deleteBtn', deleteTask);
-    // $(document).on('change', '.completeCheckbox', markComplete);
+    $(document).on('change', '.completeCheckbox', markComplete);
 }
 
 // Declare getTasks
@@ -42,7 +42,7 @@ function renderTasks(tasks) {
     // Render each task
     for (let task of tasks) {
         $('#taskTbody').append(`
-        <tr data-id="${task.id}" data-completed="${task.completed}">
+        <tr data-id="${task.id}" ${styleCompleted(task)}>
             <td>${checkCompleted(task)}</td>
             <td>${task.description}</td>
             <td>
@@ -57,12 +57,21 @@ function renderTasks(tasks) {
 
 // Declare checkCompleted
 function checkCompleted(task) {
-    if (task.completed) {
-        return '<input type="checkbox" class="completeCheckbox" checked>';
+    if (task.complete) {
+        return '<input type="checkbox" class="completeCheckbox" checked disabled>';
     } else {
         return '<input type="checkbox" class="completeCheckbox">'
     }
 } // end checkCompleted
+
+// Declare styleCompleted
+function styleCompleted(task) {
+    if (task.complete) {
+        return 'class="completedTask"';
+    } else {
+        return '';
+    }
+} // end styleCompleted
 
 // Declare addTask
 function addTask(event) {
@@ -132,3 +141,40 @@ function deleteTask() {
             }
         })
     }
+
+// Declare markComplete
+function markComplete() {
+    console.log('in markComplete');
+
+    // Pull taskId and completed status
+    let taskId = $(this).parents('tr').data('id');
+        // Checkbox only enabled if completed === false, so set completedStatus to true every time
+    let completedStatus = true;
+ 
+    // Save time completed
+    // Copied and revised from https://stackoverflow.com/questions/10211145/getting-current-date-and-time-in-javascript
+    let currentDate = new Date(); 
+    let dateTime =  (currentDate.getMonth()+1) + "/"
+                    + currentDate.getDate()  + "/" 
+                    + currentDate.getFullYear() + " @ "  
+                    + currentDate.getHours() + ":"  
+                    + currentDate.getMinutes() + ":" 
+                    + currentDate.getSeconds();
+
+    // Make PUT request to /tasks/:id
+    $.ajax({
+        method: 'PUT',
+        url: `/tasks/${taskId}`,
+        data: {
+            complete: completedStatus,
+            time_completed: dateTime
+        }
+    })
+        .then( () => {
+            console.log(`PUT /tasks/${taskId} success`);
+            getTasks();
+        })
+        .catch( err => {
+            console.log('PUT failed', err);
+        });
+} // end markComplete
