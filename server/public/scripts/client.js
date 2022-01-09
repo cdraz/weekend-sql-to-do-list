@@ -45,15 +45,25 @@ function renderTasks(tasks) {
         <tr data-id="${task.id}" ${styleCompleted(task)}>
             <td>${checkCompleted(task)}</td>
             <td>${task.description}</td>
+            <td>${checkTimeCompleted(task)}</td>
             <td>
                 <button class="deleteBtn">
-                    Delete
+                    ❌
                 </button>
             </td>
         </tr>
         `)
     }
 }
+
+// Declare styleCompleted
+function styleCompleted(task) {
+    if (task.complete) {
+        return 'class="completedTask"';
+    } else {
+        return '';
+    }
+} // end styleCompleted
 
 // Declare checkCompleted
 function checkCompleted(task) {
@@ -64,14 +74,14 @@ function checkCompleted(task) {
     }
 } // end checkCompleted
 
-// Declare styleCompleted
-function styleCompleted(task) {
-    if (task.complete) {
-        return 'class="completedTask"';
+// Declare checkTimeCompleted
+function checkTimeCompleted(task) {
+    if (task.time_completed) {
+        return task.time_completed;
     } else {
         return '';
     }
-} // end styleCompleted
+} // end checkTimeCompleted
 
 // Declare addTask
 function addTask(event) {

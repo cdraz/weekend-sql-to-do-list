@@ -16,17 +16,17 @@
 [x] Databse setup
     [x] database.sql
     [x] postgresql setup
-[ ] Router set up
+[x] Router set up
     [x] Pool
     [x] GET
     [x] POST
-    [ ] PUT
+    [x] PUT
     [x] DELETE
 [x] Server.js
-[ ] Client.js
+[x] Client.js
     [x] Event handlers
     [x] Add function
-    [ ] Complete function
+    [x] Complete function
     [x] Delete function
     [x] Refresh/GET function
     [x] Render function
@@ -35,5 +35,5 @@
 **STRETCH**
 [ ] Bootstrap styling
 [x] Confirm delete (SweetAlert?)
-[ ] Reverse the order of the returned todos (So they're most recent first ?)
-[ ] Record and display the time a task was completed
+[?] Reverse the order of the returned todos (So they're most recent first ?)
+[x] Record and display the time a task was completed

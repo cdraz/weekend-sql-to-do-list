@@ -25,7 +25,7 @@ pool.on('error', err => {
 taskRouter.get('/', (req, res) => {
     console.log('in GET /tasks');
 
-    let queryText = 'SELECT * FROM "tasks" ORDER BY "id" DESC';
+    let queryText = 'SELECT * FROM "tasks" ORDER BY "complete" ASC';
     
     // Pool query
     pool.query(queryText).then( result => {
