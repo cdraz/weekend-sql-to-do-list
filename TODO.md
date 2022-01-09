@@ -34,6 +34,6 @@
 
 **STRETCH**
 [ ] Bootstrap styling
-[ ] Confirm delete (SweetAlert?)
+[x] Confirm delete (SweetAlert?)
 [ ] Reverse the order of the returned todos (So they're most recent first ?)
 [ ] Record and display the time a task was completed
