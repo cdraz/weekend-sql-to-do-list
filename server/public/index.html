@@ -13,17 +13,26 @@
 </head>
 <body>
     <header>
-        <h1>To Do App</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-auto">
+                    <span id="todo-icon">✅</span>
+                </div>
+                <div class="col-auto">
+                    <h1>To Do List</h1>
+                </div>
+            </div>
+        </div>
     </header>
     <main>
         <div class="container">
-            <div class="grid">
+            <div class="row">
                 <form id="taskForm">
                     <input type="text" id="taskInput" placeholder="Task Description" required>
-                    <input type="submit">
+                    <input type="submit" value="Add Task">
                 </form>
             </div>
-            <div class="grid">
+            <div class="row">
                 <table class="table table-striped">
                     <thead>
                         <tr>

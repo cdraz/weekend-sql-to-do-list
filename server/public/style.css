@@ -1,6 +1,24 @@
+header {
+    margin-top: 70px;
+    margin-bottom: 50px;
+}
 
+#todo-icon {
+    font-size: 32px;
+}
 
+#taskForm {
+    margin-bottom: 30px;
+}
 
+#taskInput {
+    width: 400px;
+}
+
+.completeCheckbox {
+    height: 22px;
+    width: 22px;
+}
 
 .completedTask {
     background-color: #aaffaa;

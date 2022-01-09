@@ -30,10 +30,10 @@
     [x] Delete function
     [x] Refresh/GET function
     [x] Render function
-[ ] Styling
+[x] Styling
 
 **STRETCH**
-[ ] Bootstrap styling
+[x] Bootstrap styling
 [x] Confirm delete (SweetAlert?)
 [?] Reverse the order of the returned todos (So they're most recent first ?)
 [x] Record and display the time a task was completed
