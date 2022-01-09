@@ -25,7 +25,7 @@ pool.on('error', err => {
 taskRouter.get('/', (req, res) => {
     console.log('in GET /tasks');
 
-    let queryText = 'SELECT * FROM "tasks" ORDER BY "id" DESC';
+    let queryText = 'SELECT * FROM "tasks" ORDER BY "complete" ASC';
     
     // Pool query
     pool.query(queryText).then( result => {
@@ -66,11 +66,37 @@ taskRouter.post('/', (req, res) => {
 });
 
 // PUT
+taskRouter.put('/:id', (req, res) => {
+    console.log(`in PUT /tasks/${req.params.id}`);
 
+    // Create SQL update query
+    let queryText = `
+        UPDATE "tasks"
+        SET "complete" = $1,
+            "time_completed" = $2
+        WHERE "id" = $3;
+    `;
+
+    let queryParams = [
+        req.body.complete,
+        req.body.time_completed,
+        req.params.id
+    ];
+
+    pool.query(queryText, queryParams)
+        .then( dbRes => {
+            console.log(`PUT /tasks/${req.params.id} successful`);
+            res.sendStatus(201)
+        })
+        .catch( err => {
+            console.log('PUT /tasks failed', err);
+            res.sendStatus(500);
+        });
+});
 
 // DELETE
 taskRouter.delete('/:id', (req, res) => {
-    console.log('in DELETE /tasks', req.params.id);
+    console.log(`in DELETE /tasks/${req.params.id}`);
 
     // Create SQL delete query
     let queryText = `
