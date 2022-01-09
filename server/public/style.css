@@ -3,6 +3,10 @@ header {
     margin-bottom: 50px;
 }
 
+button {
+    text-align: center;
+}
+
 #todo-icon {
     font-size: 32px;
 }
